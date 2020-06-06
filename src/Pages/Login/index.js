@@ -1,37 +1,54 @@
 import React, { useState } from 'react';
 import './estilo.css';
 import { IoIosArrowRoundForward } from 'react-icons/io'
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import api from './../../api/axioszada';
 
 export default function Login() {
   
+    const [ id, setId ] = useState();
+    const history = useHistory();
 
+  async function handleLogin(e) {
 
-  function handleLogin() {
-       //api.get('session', )
-    console.log('adasda');
+      e.preventDefault();
+      try {
+
+        const response = await api.post('auth', { id } )
+        localStorage.setItem('drugstoreId', id);
+        localStorage.setItem('drugstoreName', response.data.name);
+
+        history.push('/Perfil');
+
+      } catch (err) {
+
+        alert('nao foi');
+      }
+     
   }
 
   return (
     
     <div className='login-container'>
      
-        <form>
+        <form onSubmit={handleLogin}>
 
           <p className="proposta">
             Destruindo fronteiras entre fármacias e clientes desde 1920
           </p>
-          <text id="zz">Login</text>
+
+          <p id="zz">Login </p>
 
           <div className="form-container">
-            <input />
-            <button className="botao" onClick={handleLogin}>Entrar</button>
+            
+            <input value={id}
+            onChange={e => setId(e.target.value)} />
+           <button className="botao" type="submit">Entrar</button>
           </div>
 
 
           <div className="cadastro-container">         
-               <Link>
+               <Link to="/Registrar">
                <IoIosArrowRoundForward size={45} color="purple"></IoIosArrowRoundForward>
               
                </Link>

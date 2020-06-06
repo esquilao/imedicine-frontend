@@ -1,11 +1,12 @@
 .Page-container {
     width: 1150px;
-    background-color: #D3D1D1;
-    height:800px;
+    background-color: lightgrey;
+    height:600px;
     margin-left: 100px;
     border-radius: 30px;
     margin-bottom: 100px;
-    margin-top: 100px;
+    margin-top: 0px;
+
 }
 
 .Register-container {
@@ -77,8 +78,8 @@
 }
 
 .cadastro-container {
-     margin-left: 700px;
-     margin-top: 70px;
+     margin-left: 0px;
+     margin-top: 40px;
      font-size: 22px;
      
 }

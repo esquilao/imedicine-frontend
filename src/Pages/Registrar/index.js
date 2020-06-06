@@ -1,106 +1,103 @@
 import React, { useState } from 'react';
 import './estilo.css';
 import { IoMdArrowRoundForward } from 'react-icons/io'
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
+import api from '../../api/axioszada';
 
 
 export default function Registrar () {
 
-    const [user, setUser] = useState({
+    const [name, setName] = useState();
+    const [email, setEmail] = useState();
+    const [whatsapp, setWhatsapp] = useState();
+    const [city, setCity] = useState();
+    const [state, setState] = useState();
+    const [address, setAddress] = useState();
 
-        drugstoreName: "",
-        email: "",
-        zap: "",
-        city: "",
-        state: "",
-        address: ""
-    });
+    const history = useHistory();
 
-   const handleInput = (e) => {
-        
-        // console.log(e.target.name)
-        // setUser((usuario) => ({
-        //     ...usuario,
-        //     [e.target.name]: e.target.value
-        // })
-        // );
+    const data = {
+            name,
+            email,
+            whatsapp,
+            city,
+            state,
+            address,
     }
-    
 
-     function handleRegister() {
+    async function handleRegister(e) {
 
-    //     const api = axios.create({
-
-    //         baseURL : 'http://localhost:3001',
-    //     })
-
-    //    api.get('/users')
-    //    .then(console.log)
-       
-    //    ;
-
-    fetch('http://localhost:3001/drugstores', {
-        method: 'POST',
-        body: JSON.stringify({ 'asdasd': 'sdas'}),
-        headers: {
-            'Content-Type' : 'application/json',
-            'Accept' : 'application/json',
+        e.preventDefault();
+        console.log(data)
+        try {
+            const response = await api.post('drugstores', data)
+            alert(`Seu id é ${response.data.drugstore_id}`);
             
+        } catch (error) {
+            alert('não foi possivel : cadastrar seu estabelecimento')
         }
-    })
-    
-    .then(res => res.json())
-    .then(res => alert(res.code))
-       
-          
-    }
+        
+        history.push('/');
+   }
 
     return(
-
+        
          <div className="Page-container">
-        <div className="Register-container">
+         
+         <div className="Register-container">
            
         
-
+         <form onSubmit={handleRegister}>
             <div className="conteudo">
             <p>Cadastre seu estabelecimento :</p>
 
-                <input name="drugstoreName" onChange={handleInput} value={user.drugstoreName} placeholder="  Nome da farmacia"></input>
-                <input onChange={handleInput} value={user.email} placeholder="  E-mail"></input>
-                <input onChange={handleInput} value={user.zap} placeholder="  Whatsapp"></input>
+                <input value={name} 
+                onChange={ (e) => setName(e.target.value)} 
+                placeholder="  Nome da farmacia"></input>
+                <input value={email} 
+                onChange={ (e) => setEmail(e.target.value)} 
+                placeholder="  E-mail"></input>
+                <input value={whatsapp} 
+                onChange={ (e) => setWhatsapp(e.target.value)} 
+                placeholder="  Whatsapp"></input>
 
                     <div id="endereço">
-                        <input onChange={handleInput} value={user.city} className="city"  placeholder="  Cidade"></input>
-                        <input onChange={handleInput} value={user.state} className="state" placeholder="Estado"></input>
-                        <input onChange={handleInput} value={user.address} className="address" placeholder="  Endereço"></input>
+                        <input value={city} 
+                        onChange={ (e) => setCity(e.target.value)} className="city"  placeholder="  Cidade"></input>
+                        <input value={state} 
+                        onChange={ (e) => setState(e.target.value)} className="state" placeholder="Estado"></input>
+                        <input value={address} 
+                        onChange={ (e) => setAddress(e.target.value)} className="address" placeholder="  Endereço"></input>
                     </div>
                     
                   
-                    <button onClick={handleRegister}>Cadastrar</button>
+                    <button type="submit">Cadastrar</button>
           
 
                 
             
                 
             </div>
-            <div id="function">
+            </form>
+                    <div id="function">
                     
                     <input type="file" placeholder="adicionar foto"></input>
                 
-                </div>
-
-                <div className="cadastro-container">
+                    </div>
+               
+                    <div className="cadastro-container">
                 
                <Link to='/'>
               
-               <IoMdArrowRoundForward size={20} color="purple"></IoMdArrowRoundForward>
+               <IoMdArrowRoundForward size={30} color="purple"></IoMdArrowRoundForward> Tenho cadastro
                
                </Link>
-               <a href="/">Tenho cadastro</a>
+              
             
-          </div>
+                     </div>
                 
             </div>
+            
             </div>
     );
 }

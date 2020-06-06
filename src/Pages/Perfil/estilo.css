@@ -1,15 +1,16 @@
 
+
 .logout-container {
    margin-top: 40px;
-    margin-left:1200px;
+    margin-left: 1200px;
     max-height: 200px;
     display: flex;
-    width: 100%;
+    margin-bottom: -50px;
 }
 
-.logout-container text {
+.logout-container p {
      margin-left: 310px;
-     margin-top: 30px;
+     margin-top: 40px;
      font-size: 22px;
      color: indigo;
 }
@@ -37,38 +38,67 @@
     width: 200px;
     background-color: indigo;
     color: white;
-    margin-left: 1100px;
+    margin-left: 1050px;
     border-radius: 10px;
     border: 1px solid grey;
-    margin-top: 200px;
+    margin-top: 330px;
 }
 
-.product-template {
-    max-width: 300px;
-    max-height: 200px;
-    width:300px;
-    height:200px;
-    background-color: lightcoral;
+.products-template {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width:810px;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+    height:600px;
+    background-color: lightsteelblue;
     margin-left: 100px;
     border-radius: 10px;
     border: 1px solid grey;
-
+    align-content: start;
 }
 
-.product-template p {
-    font-size: 22px;
+.products-template .lista {
+    font-size: 20px;
+    display: flex;
+    height: 260px;  
+    max-width: 250px; 
+    background-color: white;
+    border-radius: 10px;
+}
+
+.products-template .lista img {
+    height: 150px;
+    margin-top: 10px;
+    width:150px;
+    margin-left: 50px;
+}
+
+.products-template .buttons {
     display: flex;
     flex-direction: column;
-    margin-left: 10px;
+    margin-left: 70px;
+    color: indigo;
+    margin-top: 190px;
+   
 }
 
-.product-template #imagem {
-    max-width: 110px;
-    max-height: 120px;
-   display: flex;
-   flex-direction: line;
-   margin-left: 180px;
-   margin-top: -70px;
-    
+.products-template .caracteristicas {
+    display: flex;
+    margin-top: 160px;
+    margin-left: -180px;
+   
+    flex-direction: column;
 }
+
+.products-template .caracteristicas p {
+    margin-bottom: -12px;
+}
+
+.products-template .container {
+    display: flex;
+}
+
+
 
