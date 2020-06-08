@@ -9,6 +9,7 @@ export default function Registrar () {
 
     const [name, setName] = useState();
     const [email, setEmail] = useState();
+    const [image, setImage] = useState();
     const [whatsapp, setWhatsapp] = useState();
     const [city, setCity] = useState();
     const [state, setState] = useState();
@@ -16,21 +17,21 @@ export default function Registrar () {
 
     const history = useHistory();
 
-    const data = {
-            name,
-            email,
-            whatsapp,
-            city,
-            state,
-            address,
-    }
-
     async function handleRegister(e) {
 
         e.preventDefault();
-        console.log(data)
-        try {
-            const response = await api.post('drugstores', data)
+        const formdata = new FormData();
+
+            formdata.append("name", name);
+            formdata.append("email", email);
+            formdata.append("image", image);
+            formdata.append("whatsapp", whatsapp);
+            formdata.append("city", city);
+            formdata.append("state", state);
+            formdata.append("address", address);
+
+            try {
+            const response = await api.post('drugstores', formdata)
             alert(`Seu id é ${response.data.drugstore_id}`);
             
         } catch (error) {
@@ -73,16 +74,16 @@ export default function Registrar () {
                   
                     <button type="submit">Cadastrar</button>
           
-
-                
-            
-                
             </div>
             </form>
                     <div id="function">
                     
-                    <input type="file" placeholder="adicionar foto"></input>
-                
+                    <input id="upload" type="file" accept="image/*" className="hidden"
+                        onChange={(event) => {
+                           setImage(event.target.files[0])
+                        }}
+                    />
+                    <label htmlFor="upload" >Selecione a foto</label>
                     </div>
                
                     <div className="cadastro-container">

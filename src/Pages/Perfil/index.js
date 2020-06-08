@@ -31,14 +31,7 @@ export default function Perfil() {
   function goToAddProduct() {
     history.push('/AddProduct');
   }
-
-  function saveId(id) {
-    return function (e) {
-      localStorage.setItem('productId', id);
-    }
-   
-  }
-   
+  
   function deleteProduct(id) {
     return async function (e) { 
      await api.delete(`/medicines/${id}`)
@@ -68,7 +61,7 @@ export default function Perfil() {
           {medicines.map((medicine) => (
             
               <div key={medicine.product_id} className="lista">
-                <img src={medicine.url} alt="aaaaa"/>
+                <img src={medicine.image} alt="aaaaa"/>
                 <div className="container">
                 <div className="caracteristicas">
                 <p>{medicine.name}</p>
@@ -78,8 +71,8 @@ export default function Perfil() {
                 
                 <AiFillDelete onClick={deleteProduct(medicine.product_id)} size={27} />
                 
-                <Link to="/FixProduct">
-                  <AiOutlineSetting size={27} onClick={saveId(medicine.product_id)}/>
+                <Link to={`/FixProduct/${medicine.product_id}`}>
+                  <AiOutlineSetting size={27} color="indigo"/>
                 </Link>
 
               </div>

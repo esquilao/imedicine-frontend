@@ -40,8 +40,9 @@ export default function Login() {
           <p id="zz">Login </p>
 
           <div className="form-container">
-            
+            <input placeholder="E-mail"/>
             <input value={id}
+            placeholder="Senha"
             onChange={e => setId(e.target.value)} />
            <button className="botao" type="submit">Entrar</button>
           </div>

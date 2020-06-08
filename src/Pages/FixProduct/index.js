@@ -1,7 +1,7 @@
 import React from 'react';
 import './estilo.css';
 import { IoMdLogOut } from 'react-icons/io'
-import {Link, useHistory} from 'react-router-dom';
+import {Link, useHistory, useParams} from 'react-router-dom';
 import api from '../../api/axioszada';
 import { useState } from 'react';
 
@@ -9,10 +9,10 @@ import { useState } from 'react';
 export default function FixProduct () {
 
     const drugstoreId = localStorage.getItem('drugstoreId');
-    const product_id  = localStorage.getItem('productId');
     const history = useHistory();
     const [name, setNewName] = useState([])
     const [price, setNewPrice] = useState([])
+    const {id} = useParams();
 
     function handleLogout() {
         localStorage.clear();
@@ -23,12 +23,11 @@ export default function FixProduct () {
 
         const data = {
             name,
-            price,
-            product_id
+            price
         }
 
         try {
-          await api.put('/medicines', data , {
+          await api.put(`/medicines/${id}`, data , {
                 headers: {
                     authorization : drugstoreId
                 } 
@@ -37,10 +36,8 @@ export default function FixProduct () {
             console.log('não deu pra alterar o produto')
         }
         history.push('/Perfil');
-        localStorage.removeItem('productId');
-       
-
     }
+    
     return(
         <div className="page-container">
         <div id="aa">

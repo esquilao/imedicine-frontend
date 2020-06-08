@@ -66,6 +66,17 @@
     
     .page-container #aa {
         margin-left: 950px;
-        
-       
     }
+
+    .Register-container #function #upload {
+        display:none;
+    }
+    
+    .Register-container #function label {
+        color: white;
+        font-size: 20px;
+        background-color: indigo;
+        border-radius: 10px;
+        padding: 10px 14px;
+    }
+    

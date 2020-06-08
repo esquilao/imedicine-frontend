@@ -10,6 +10,7 @@ export default function AddProduct() {
     const [name, setName] = useState([]);
     const [price, setPrice] = useState([]);
     const history = useHistory();
+    const [image, setImage] = useState();
     const drugstoreId = localStorage.getItem('drugstoreId');
 
     function handleLogout() {
@@ -20,10 +21,12 @@ export default function AddProduct() {
     async function addProduct(e) {
 
         e.preventDefault();
-        const data = {
-            name,
-            price
-        }
+        const data = new FormData();
+
+            data.append("name", name)
+            data.append("price", price)
+            data.append("image", image)
+
         try {
            await api.post('/medicines', data, { headers: {
                 authorization: drugstoreId,
@@ -61,7 +64,13 @@ export default function AddProduct() {
 
             <button id="add" onClick={addProduct}>Adicionar</button>
             
-            <input id="foto" type="file"></input>
+            <input id="upload" type="file" accept="image/*" className="hidden"
+                        onChange={(event) => {
+                           setImage(event.target.files[0])
+                        }}
+                    />
+            <label htmlFor="upload" >Selecione a foto</label>
+                    
             
       </div>
 

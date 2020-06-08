@@ -72,9 +72,21 @@
 }
 
 .Register-container #function {
-    font-size: 20px;
     margin-left: 650px;
-    margin-top: -100px;
+    margin-top: -90px;
+}
+
+.Register-container #function #upload {
+    font-size: 22px;
+    display:none;
+}
+
+.Register-container #function label {
+    color: white;
+    font-size: 20px;
+    background-color: indigo;
+    border-radius: 10px;
+    padding: 10px 14px;
 }
 
 .cadastro-container {
