@@ -7,8 +7,9 @@ import api from '../../api/axioszada';
 
 export default function Registrar () {
 
-    const [name, setName] = useState();
     const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+    const [name, setName] = useState();
     const [image, setImage] = useState();
     const [whatsapp, setWhatsapp] = useState();
     const [city, setCity] = useState();
@@ -22,8 +23,9 @@ export default function Registrar () {
         e.preventDefault();
         const formdata = new FormData();
 
-            formdata.append("name", name);
             formdata.append("email", email);
+            formdata.append("password", password);
+            formdata.append("name", name);
             formdata.append("image", image);
             formdata.append("whatsapp", whatsapp);
             formdata.append("city", city);
@@ -31,11 +33,11 @@ export default function Registrar () {
             formdata.append("address", address);
 
             try {
-            const response = await api.post('drugstores', formdata)
-            alert(`Seu id é ${response.data.drugstore_id}`);
+            await api.post('drugstores', formdata)
+            alert('Fármacia criada');
             
         } catch (error) {
-            alert('não foi possivel : cadastrar seu estabelecimento')
+            alert('não foi possivel cadastrar seu estabelecimento')
         }
         
         history.push('/');
@@ -52,12 +54,16 @@ export default function Registrar () {
             <div className="conteudo">
             <p>Cadastre seu estabelecimento :</p>
 
-                <input value={name} 
-                onChange={ (e) => setName(e.target.value)} 
-                placeholder="  Nome da farmacia"></input>
                 <input value={email} 
                 onChange={ (e) => setEmail(e.target.value)} 
                 placeholder="  E-mail"></input>
+                <input value={password} 
+                onChange={ (e) => setPassword(e.target.value)} 
+                type="password"
+                placeholder="  Senha secreta"></input>
+                <input value={name} 
+                onChange={ (e) => setName(e.target.value)} 
+                placeholder="  Nome da farmacia"></input>
                 <input value={whatsapp} 
                 onChange={ (e) => setWhatsapp(e.target.value)} 
                 placeholder="  Whatsapp"></input>

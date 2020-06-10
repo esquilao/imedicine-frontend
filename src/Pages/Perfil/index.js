@@ -65,7 +65,7 @@ export default function Perfil() {
                 <div className="container">
                 <div className="caracteristicas">
                 <p>{medicine.name}</p>
-                <p>{medicine.price}</p>
+                <p>{Intl.NumberFormat('pt-BR', { style: 'currency', currency : 'BRL'}).format(medicine.price)}</p>
               </div>
               <div className="buttons">
                 

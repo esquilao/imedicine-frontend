@@ -64,11 +64,14 @@ export default function AddProduct() {
 
             <button id="add" onClick={addProduct}>Adicionar</button>
             
-            <input id="upload" type="file" accept="image/*" className="hidden"
-                        onChange={(event) => {
-                           setImage(event.target.files[0])
-                        }}
-                    />
+            <input 
+            id="upload" 
+            type="file" 
+            accept="image/*" 
+            onChange={(event) => {
+            setImage(event.target.files[0])
+            }}
+            />
             <label htmlFor="upload" >Selecione a foto</label>
                     
             

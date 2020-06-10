@@ -74,7 +74,8 @@
     
     .Register-container #function label {
         color: white;
-        font-size: 20px;
+        margin-top: 10px;
+        font-size: 22px;
         background-color: indigo;
         border-radius: 10px;
         padding: 10px 14px;

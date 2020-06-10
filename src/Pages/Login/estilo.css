@@ -20,8 +20,17 @@
     
 }
 
+.login-container img {
+    height: 400px;
+    width: 700px;
+    margin-top: -100px;
+    margin-bottom: -200px;
+}
+
 .login-container #zz {
        margin-left: -250px;
+       margin-top: -20px;
+       margin-bottom: 10px;
 }
 
 .login-container .proposta{
@@ -54,7 +63,7 @@
 
 .form-container {
     
-    margin-left: 150px;
+    margin-left: 195px;
     font-family: 'Sura';
     align-items: center;
     display: flex;
@@ -65,7 +74,7 @@
 
 
 .form-container input {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     border: 1px solid grey;
     border-radius: 10px;   
     align-items: center;
@@ -82,7 +91,7 @@
     display: flex;
     height: 70px;
     font-size: 20px;
-    margin-left: 144px;
+    margin-left: 180px;
     margin-top: 0px;
 }
 
