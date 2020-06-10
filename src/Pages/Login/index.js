@@ -6,17 +6,20 @@ import api from './../../api/axioszada';
 
 export default function Login() {
   
-    const [ id, setId ] = useState();
+    const [ email, setEmail ] = useState();
+    const [ password, setPassword ] = useState();
     const history = useHistory();
 
-  async function handleLogin(e) {
+
+    async function handleLogin(e) {
 
       e.preventDefault();
       try {
 
-        const response = await api.post('auth', { id } )
-        localStorage.setItem('drugstoreId', id);
+        const response = await api.post('auth', { email , password } )
+        
         localStorage.setItem('drugstoreName', response.data.name);
+        localStorage.setItem('drugstoreId', response.data.drugstore_id);
 
         history.push('/Perfil');
 
@@ -29,10 +32,11 @@ export default function Login() {
 
   return (
     
+    
     <div className='login-container'>
      
         <form onSubmit={handleLogin}>
-
+          <img src="https:\/\/i.imgur.com\/OSL63Zg.png" alt="logo"></img>
           <p className="proposta">
             Destruindo fronteiras entre fármacias e clientes desde 1920
           </p>
@@ -40,11 +44,18 @@ export default function Login() {
           <p id="zz">Login </p>
 
           <div className="form-container">
-            <input placeholder="E-mail"/>
-            <input value={id}
+
+            <input 
+            placeholder="E-mail"
+            value={email}
+            onChange={ (e) => setEmail(e.target.value)}/>
+            <input
             placeholder="Senha"
-            onChange={e => setId(e.target.value)} />
+            value={password}
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}/>
            <button className="botao" type="submit">Entrar</button>
+
           </div>
 
 

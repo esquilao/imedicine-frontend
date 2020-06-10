@@ -12,6 +12,7 @@ export default function FixProduct () {
     const history = useHistory();
     const [name, setNewName] = useState([])
     const [price, setNewPrice] = useState([])
+    const [image, setImage] = useState([]);
     const {id} = useParams();
 
     function handleLogout() {
@@ -21,10 +22,11 @@ export default function FixProduct () {
 
     async function alteraProduto (e) {
 
-        const data = {
-            name,
-            price
-        }
+        const data = new FormData();
+
+            data.append("name", name)
+            data.append("price", price)
+            data.append("image", image)
 
         try {
           await api.put(`/medicines/${id}`, data , {
@@ -61,7 +63,12 @@ export default function FixProduct () {
 
           <button id="add" onClick={alteraProduto}>Alterar</button>
           
-          <input id="foto" type="file"></input>
+          <input id="upload" type="file" accept="image/*"
+                onChange={(event) => {
+                    setImage(event.target.files[0])
+                }}
+            />
+          <label htmlFor="upload" >Nova foto</label>
           
     </div>
     );
