@@ -87,11 +87,18 @@
 .login-container .cadastro-container {
    
     font-family: 'Sura';
-    flex-direction: line;
+    flex-direction: column;
     display: flex;
     height: 70px;
-    font-size: 20px;
-    margin-left: 180px;
+    font-size: 18px;
+    margin-left: -100px;
     margin-top: 0px;
 }
+
+.login-container .cadastro-container #debaixo {
+    margin-top: -15px;
+    margin-left: -25px;
+}
+
+
 

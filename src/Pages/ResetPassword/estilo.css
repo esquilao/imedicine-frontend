@@ -1,0 +1,51 @@
+.Page-container {
+    width: 1150px;
+    background-color: lightgrey;
+    height:600px;
+    margin-left: 100px;
+    border-radius: 30px;
+    margin-bottom: 100px;
+    margin-top: 0px;
+
+}
+
+.Page-container h1 {
+    margin-top: 150px;
+}
+
+.Info-container {
+    align-items: left;
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 0px;
+    flex-direction: column;
+    border-bottom: 10px;
+    border-radius: 10px;
+    
+}
+
+.Info-container input {
+    width: 350px;
+    height: 50px;
+    border: 1px solid grey;
+    border-radius: 10px; 
+    margin-bottom: 10px;  
+    text-align: left ;
+}
+
+.Info-container button {
+    align-items: center;
+    border: 1px solid grey;
+    border-radius: 10px;
+    width: 370px;
+    height: 50px;
+    background: #E02041 ;
+    font-size: 20px;
+}
+
+.Info-container .voltar {
+    font-size: 22px;
+    margin-left: 800px;
+    margin-top: -20px;
+}

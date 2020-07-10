@@ -36,11 +36,13 @@ export default function Registrar () {
             await api.post('drugstores', formdata)
             alert('Fármacia criada');
             
-        } catch (error) {
-            alert('não foi possivel cadastrar seu estabelecimento')
-        }
+            } catch(erro) {
+            const errolegível = erro.response.data.erro
+            alert(errolegível);
+            }
         
         history.push('/');
+        
    }
 
     return(

@@ -9,10 +9,17 @@
 }
 
 .logout-container p {
-     margin-left: 310px;
+     margin-left: 300px;
      margin-top: 40px;
      font-size: 22px;
      color: indigo;
+}
+
+.logout-container img {
+        height: 100px;
+        margin-left: 30px;
+        margin-bottom: 40px;
+        border-radius: 3px;
 }
 
 .logout-container #sair {

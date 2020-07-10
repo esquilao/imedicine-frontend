@@ -8,9 +8,21 @@ import { Link, useHistory, } from 'react-router-dom';
 export default function Perfil() {
 
   const [medicines, setMedicine] = useState([]);
+  const [image, setImage] = useState([])
   const history = useHistory();
   const drugstoreName = localStorage.getItem('drugstoreName');
   const drugstoreId = localStorage.getItem('drugstoreId');
+
+  useEffect(() => {
+    api.get('image', {
+      headers: {
+        authorization: drugstoreId
+      }
+    })
+    .then(res => {
+      setImage(res.data);
+    })
+  }, [drugstoreId]);
 
   useEffect(() => {
     api.get('profile', {
@@ -49,13 +61,14 @@ export default function Perfil() {
         </Link>
         <p id="função" >Seus produtos :</p>
         <p>Bom dia, {drugstoreName} </p>
+        <img src={image.map(image => image.image)} alt='aaaa'></img>
 
       </header>
 
       <div className="addProduct-container">
         <button onClick={goToAddProduct} >Adicionar produtos</button>
       </div>
-
+    
       <div className="products-template">
         
           {medicines.map((medicine) => (

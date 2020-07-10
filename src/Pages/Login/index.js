@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './estilo.css';
-import { IoIosArrowRoundForward } from 'react-icons/io'
+import { IoIosArrowRoundForward } from 'react-icons/io';
+import { AiOutlineQuestionCircle } from "react-icons/ai";
 import {Link, useHistory} from 'react-router-dom';
 import api from './../../api/axioszada';
 
@@ -25,7 +26,7 @@ export default function Login() {
 
       } catch (err) {
 
-        alert('nao foi');
+        alert('e-mail ou senha incorretos');
       }
      
   }
@@ -59,12 +60,15 @@ export default function Login() {
           </div>
 
 
-          <div className="cadastro-container">         
+          <div className="cadastro-container">      
                <Link to="/Registrar">
-               <IoIosArrowRoundForward size={45} color="purple"></IoIosArrowRoundForward>
-              
-               </Link>
+               <IoIosArrowRoundForward size={30} color="purple" ></IoIosArrowRoundForward>
                <a href="/Registrar">Não sou cadastrado</a>
+               </Link>
+               <Link id="debaixo" to="/Password">
+               <AiOutlineQuestionCircle size={20} color="purple" placeholder="Esqueci minha senha"></AiOutlineQuestionCircle>
+               <a href="/Password"> Esqueci a senha</a>
+               </Link>
           </div>
         </form>
       
