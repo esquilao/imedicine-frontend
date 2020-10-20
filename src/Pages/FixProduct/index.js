@@ -1,7 +1,7 @@
 import React from 'react';
-import './estilo.css';
+import {NewInput, Information, LinkBala, Inpute, Botao, Main, Label, Texto} from '../../styles';
 import { IoMdLogOut } from 'react-icons/io'
-import {Link, useHistory, useParams} from 'react-router-dom';
+import {useHistory, useParams} from 'react-router-dom';
 import api from '../../api/axioszada';
 import { useState } from 'react';
 
@@ -12,6 +12,7 @@ export default function FixProduct () {
     const history = useHistory();
     const [name, setNewName] = useState([])
     const [price, setNewPrice] = useState([])
+    const [quantity, setNewQuantity] = useState([])
     const [image, setImage] = useState([]);
     const {id} = useParams();
 
@@ -26,6 +27,7 @@ export default function FixProduct () {
 
             data.append("name", name)
             data.append("price", price)
+            data.append("quantity", quantity)
             data.append("image", image)
 
         try {
@@ -41,35 +43,44 @@ export default function FixProduct () {
     }
     
     return(
-        <div className="page-container">
-        <div id="aa">
-       <Link id="euu" to="/">
-              <IoMdLogOut size={50} color="red" onClick={handleLogout}></IoMdLogOut>
-          </Link>
-          </div>
-          <div className="product-container">
+        
+          <Main >
           
-          <p id="function">Alterar produtos :</p>
+            <Information gap="30px" margemEsquerda="-50px" margemCima="20px">
+        
+                <Texto tamanho="30px">Alterar produtos:</Texto>
+           
+                <NewInput value={name} 
+                placeholder="  Nome" 
+                onChange={ (e) => setNewName(e.target.value)}>
+                </NewInput>
+                <NewInput value={price} 
+                placeholder="  Preço" 
+                onChange={ (e) => setNewPrice(e.target.value)} >
+                </NewInput>
+                <NewInput value={quantity} 
+                placeholder="  Qnt. em estoque" 
+                onChange={ (e) => setNewQuantity(e.target.value)}>
+                </NewInput>
+                <Botao largura="380px" background="#E02041" onClick={alteraProduto}>Adicionar</Botao>
+            </Information>
+          <Information  margemEsquerda="150px" margemCima="400px">
          
-              <input value={name}
-              placeholder=" Novo nome" 
-              id="name"
-              onChange={(e) => setNewName(e.target.value)}></input>
-              <input value={price} 
-              placeholder=" Novo preço" 
-              id="price"
-              onChange={(e) => setNewPrice(e.target.value)}></input>
-          </div>
-
-          <button id="add" onClick={alteraProduto}>Alterar</button>
+         <Inpute altura="60px" display="none" 
+         type="file" 
+         accept="image/*" 
+         onChange={(event) => {
+         setImage(event.target.files[0])
+         }}
+         />
+         <Label htmlFor="upload" >     Nova foto</Label>
+         
+         </Information>
+         <LinkBala margemEsquerda="=700px" margemCima="20px" margemBaixo="650px" to="/">
+             <IoMdLogOut size={50} color="red" onClick={handleLogout}></IoMdLogOut>
+             </LinkBala>
           
-          <input id="upload" type="file" accept="image/*"
-                onChange={(event) => {
-                    setImage(event.target.files[0])
-                }}
-            />
-          <label htmlFor="upload" >Nova foto</label>
-          
-    </div>
+    </Main>
     );
 }
+

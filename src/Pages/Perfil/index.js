@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import './estilo.css';
+import { Main, LinkBala, Cabeça, Remedio, Texto , Botao, Imagem, Remédios} from './../../styles.js';
 import api from '../../api/axioszada';
 import { IoMdLogOut } from 'react-icons/io'
 import { AiFillDelete, AiOutlineSetting } from "react-icons/ai";
-import { Link, useHistory, } from 'react-router-dom';
+import { useHistory, } from 'react-router-dom';
 
 export default function Perfil() {
 
@@ -53,49 +53,41 @@ export default function Perfil() {
 
   return (
 
-    <div>
-      <header className="logout-container">
-
-        <Link id="sair" to="/">
+    <Main display="inline">
+      <Cabeça>
+        <Texto >Seus produtos :</Texto>
+        <Texto margemEsquerda="300px" tamanho="20px">Bom dia, {drugstoreName} </Texto>
+        <Imagem margemEsquerda="30px" altura="80px" largura="80px" src={image.map(image => image.image)} alt='aaaa'></Imagem>
+        <LinkBala margemCima="-80px" margemEsquerda="430px" to="/">
           <IoMdLogOut size={50} color="red" onClick={handleLogout}></IoMdLogOut>
-        </Link>
-        <p id="função" >Seus produtos :</p>
-        <p>Bom dia, {drugstoreName} </p>
-        <img src={image.map(image => image.image)} alt='aaaa'></img>
-
-      </header>
-
-      <div className="addProduct-container">
-        <button onClick={goToAddProduct} >Adicionar produtos</button>
-      </div>
+        </LinkBala>
+        
+      </Cabeça>
     
-      <div className="products-template">
+      <Remédios>
         
           {medicines.map((medicine) => (
             
-              <div key={medicine.product_id} className="lista">
-                <img src={medicine.image} alt="aaaaa"/>
-                <div className="container">
-                <div className="caracteristicas">
+              <Remedio key={medicine.product_id} className="lista">
+
+                <Imagem altura="200px" largura="150px" src={medicine.image} alt="aaaaa"/>
                 <p>{medicine.name}</p>
+                <p>{medicine.quantity} em estoque</p>
                 <p>{Intl.NumberFormat('pt-BR', { style: 'currency', currency : 'BRL'}).format(medicine.price)}</p>
-              </div>
-              <div className="buttons">
                 
                 <AiFillDelete onClick={deleteProduct(medicine.product_id)} size={27} />
                 
-                <Link to={`/FixProduct/${medicine.product_id}`}>
+                <LinkBala to={`/FixProduct/${medicine.product_id}`}>
                   <AiOutlineSetting size={27} color="indigo"/>
-                </Link>
-
-              </div>
-              </div>
-            </div>
-          
+                </LinkBala>
+                <Botao largura="250px" margemEsquerda="950px" onClick={goToAddProduct} >Adicionar produtos</Botao>
+              </Remedio>
+           
           ))}
-        
-      </div>
+          
+      </Remédios>
+      
 
-    </div>
+    </Main>
   );
 }

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import './estilo.css';
+import {Texto, Main, LinkBala, Inpute, Botao, Imagem, Information} from './../../styles.js';
 import { IoIosArrowRoundForward } from 'react-icons/io';
 import { AiOutlineQuestionCircle } from "react-icons/ai";
-import {Link, useHistory} from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 import api from './../../api/axioszada';
 
 export default function Login() {
@@ -13,15 +13,16 @@ export default function Login() {
 
 
     async function handleLogin(e) {
-
+      
       e.preventDefault();
       try {
-
-        const response = await api.post('auth', { email , password } )
+        
+        const data = { email, password }
+        const response = await api.post('auth', data )
         
         localStorage.setItem('drugstoreName', response.data.name);
         localStorage.setItem('drugstoreId', response.data.drugstore_id);
-
+        
         history.push('/Perfil');
 
       } catch (err) {
@@ -34,46 +35,46 @@ export default function Login() {
   return (
     
     
-    <div className='login-container'>
+    <Main>
      
         <form onSubmit={handleLogin}>
-          <img src="https:\/\/i.imgur.com\/OSL63Zg.png" alt="logo"></img>
-          <p className="proposta">
-            Destruindo fronteiras entre fármacias e clientes desde 1920
-          </p>
+        
+          <Imagem altura="400px" largura="700px" margemCima="-100px" 
+          margemBaixo="-100px" src="https:\/\/i.imgur.com\/OSL63Zg.png" alt="logo">
+          </Imagem>
+          <Texto>Destruindo fronteiras entre fármacias e clientes desde 1920  </Texto>
+          <Texto margemCima="10" margemEsquerda="170px" tamanho="22px">Login </Texto>
 
-          <p id="zz">Login </p>
+          <Information margemEsquerda="170px">
 
-          <div className="form-container">
-
-            <input 
+            <Inpute
             placeholder="E-mail"
             value={email}
-            onChange={ (e) => setEmail(e.target.value)}/>
-            <input
+            onChange={ (e) => setEmail(e.target.value)}
+            />
+            <Inpute
             placeholder="Senha"
             value={password}
             type="password"
             onChange={(e) => setPassword(e.target.value)}/>
-           <button className="botao" type="submit">Entrar</button>
+           <Botao type="submit">Entrar</Botao>
 
-          </div>
+          </Information>
 
+               <LinkBala to="/Registrar" margemEsquerda="175px">
 
-          <div className="cadastro-container">      
-               <Link to="/Registrar">
-               <IoIosArrowRoundForward size={30} color="purple" ></IoIosArrowRoundForward>
+               <IoIosArrowRoundForward size={32} color="purple" ></IoIosArrowRoundForward>
                <a href="/Registrar">Não sou cadastrado</a>
-               </Link>
-               <Link id="debaixo" to="/Password">
-               <AiOutlineQuestionCircle size={20} color="purple" placeholder="Esqueci minha senha"></AiOutlineQuestionCircle>
+               </LinkBala>
+               <LinkBala margemEsquerda="175px">
+               <AiOutlineQuestionCircle size={30}  color="purple"></AiOutlineQuestionCircle>
                <a href="/Password"> Esqueci a senha</a>
-               </Link>
-          </div>
+
+               </LinkBala>
+
         </form>
       
-    </div>
-   
+    </Main>
 
   );
 }
